@@ -5,14 +5,9 @@
 using namespace std;
 
 
-void DDA()
+void drawLine(int x1, int y1,int x2,int y2)
 {
 	int gd = DETECT ,gm;
-	int x1,y1,x2,y2;
-	cout<<"Enter (x1,y1) ";
-	cin>>x1>>y1;
-	cout<<"Enter (x2,y2) ";
-	cin>>x2>>y2;
 
 	int dx=abs(x1-x2);
 	int dy =abs(y1-y2);
@@ -50,15 +45,9 @@ void DDA()
 	closegraph();
 }
 
-void BLD()
+void drawLine(float x1, float y1,float x2,float y2)
 {
 	int gd = DETECT ,gm;
-
-	float x1,y1,x2,y2;
-	cout<<"Enter (x1,y1) ";
-	cin>>x1>>y1;
-	cout<<"Enter (x2,y2) ";
-	cin>>x2>>y2;
 
 	int dx=abs(x1-x2);
 	int dy =abs(y1-y2);
@@ -121,8 +110,44 @@ void BLD()
 
 int main(int argc, char const *argv[])
 {
-	// int gd = DETECT ,gm;
-	BLD();
-	// DDA();
+	bool flag=false;
+
+
+	int ui;
+	cout<<"Line Drawing Algorithms!!\n";
+
+	while(1)
+	{
+		cout<<"1.Set Points\n";
+		if(flag)
+			cout<<"2.DDA\n3.BLD\n";
+		cout<<"99.Exit\n>>";
+		cin>>ui;
+	
+		switch(ui)
+		{
+			case 1:
+				float x1,y1,x2,y2;
+				cout<<"Enter (x1,y1) ";
+				cin>>x1>>y1;
+				cout<<"Enter (x2,y2) ";
+				cin>>x2>>y2;
+				flag=true;
+				break;
+			case 2:
+				drawLine(x1,y1,x2,y2);
+				break;
+			case 3:
+				drawLine(x1,y1,x2,y2);
+			case 99:
+				return(0);
+			default:
+				cout<<"Invalid input\n\a";
+	
+	
+		}
+	}
+
+
 	
 }

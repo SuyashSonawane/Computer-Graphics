@@ -61,7 +61,7 @@ public:
 
 int main(int argc, char const *argv[])
 {
-	int count=50;
+	int count=400;
 	int gd = DETECT ,gm;
 	initgraph(&gd,&gm,NULL);
 	Circle c[count];
