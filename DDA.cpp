@@ -5,8 +5,9 @@
 using namespace std;
 
 
-void DDA(int gd,int gm)
+void DDA()
 {
+	int gd = DETECT ,gm;
 	int x1,y1,x2,y2;
 	cout<<"Enter (x1,y1) ";
 	cin>>x1>>y1;
@@ -41,6 +42,7 @@ void DDA(int gd,int gm)
 		x+=dx;
 		y+=dy;
 		putpixel((int)x,(int)y,WHITE);
+		delay(10);
 	}
 
 	delay(5000);
@@ -48,29 +50,71 @@ void DDA(int gd,int gm)
 	closegraph();
 }
 
-void BLD(float x1, float y1, float x2, float y2)
+void BLD()
 {
-	float m_new = 2 * (y2 - y1); 
-	float slope_error_new = m_new - (x2 - x1); 
-	
-	int gd = DETECT, gm; 
-	
-    initgraph (&gd, &gm, NULL); 
-    
-	for (float x = x1, y = y1; x <= x2; x++) 
-	{ 
-		putpixel(floor(x), floor(y), WHITE);
+	int gd = DETECT ,gm;
 
-		slope_error_new += m_new; 
+	float x1,y1,x2,y2;
+	cout<<"Enter (x1,y1) ";
+	cin>>x1>>y1;
+	cout<<"Enter (x2,y2) ";
+	cin>>x2>>y2;
 
-		if (slope_error_new >= 0) 
-		{ 
-		 y++; 
-		 slope_error_new  -= 2 * (x2 - x1); 
-		} 
-		delay(100);
+	int dx=abs(x1-x2);
+	int dy =abs(y1-y2);
+
+	int l;
+	l= dx>=dy ? dx:dy;
+
+	int x,y;
+	x=x1;
+	y=y1;
+	initgraph(&gd,&gm,NULL);
+	putpixel((int)x,(int)y,WHITE);
+	float pk = (2*dy)-dx;
+
+	if(dy>dx)
+	{
+		while(l--)
+		{
+			if(pk<=0)
+			{
+				x+=1;
+				y+=1;
+			}
+			else{
+				y+=1;
+			}
+
+			putpixel((int)x,(int)y,WHITE);
+			pk+=(2*dy)-(2*dx);
+
+			delay(10);
+		}
 	}
-	
+	else
+	{
+		while(l--)
+		{
+			if(pk>=0)
+			{
+				x+=1;
+				y+=1;
+			}
+			else{
+				x+=1;
+			}
+
+			putpixel((int)x,(int)y,WHITE);
+			pk+=(2*dy);
+			delay(10);
+		}
+	}
+
+
+
+
+
 	delay(2000);
 	closegraph();
 }
@@ -78,7 +122,7 @@ void BLD(float x1, float y1, float x2, float y2)
 int main(int argc, char const *argv[])
 {
 	// int gd = DETECT ,gm;
-	BLD(10,100,300,300);
-	// DDA(gd,gm);
+	BLD();
+	// DDA();
 	
 }
