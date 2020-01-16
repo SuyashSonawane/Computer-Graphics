@@ -1,3 +1,4 @@
+
 #include<iostream>
 #include<graphics.h>
 #include<cmath>
@@ -6,6 +7,8 @@ using namespace std;
 
 void drawLine(float x1,float y1,float x2,float y2)
 {
+	int dist=5;
+	int k=0;
     float xinc,yinc,x,y;
     float dx,dy,e;
     dx=abs(x2-x1);
@@ -25,7 +28,7 @@ void drawLine(float x1,float y1,float x2,float y2)
     {
        e=(2*dy)-dx;
        while(x!=x2)
-       {
+       { k++;
            if(e<0)
            {
                e+=(2*dy);
@@ -36,11 +39,13 @@ void drawLine(float x1,float y1,float x2,float y2)
                y+=yinc;
            }
            x+=xinc;
-           putpixel(x,y,WHITE);
+           if(k%dist==0)
+           	putpixel(x,y,WHITE);
         }
     }
     else
     {
+    	k++;
         e=(2*dx)-dy;
         while(y!=y2)
         {
@@ -54,8 +59,8 @@ void drawLine(float x1,float y1,float x2,float y2)
                 x+=xinc;
             }
             y+=yinc;
+            if(k%dist==0)
             putpixel(x,y,WHITE);
-            delay(10);
         }
     }
 }
@@ -96,14 +101,14 @@ void thickLine(float x1 ,float y1 , float x2 , float y2,float w)
 
 int main()
 {
-	float x1,y1,x2,y2;
-	int w;
+	// float x1,y1,x2,y2;
+	// int w;
 	
-	printf("Enter values for x1,y1,x2,y2\n");
-	scanf("%f%f%f%f",&x1,&y1,&x2,&y2);
-	printf("\nEnter thickness of line: ");
-    scanf("%d",&w);
+	// printf("Enter values for x1,y1,x2,y2\n");
+	// scanf("%f%f%f%f",&x1,&y1,&x2,&y2);
+	// printf("\nEnter thickness of line: ");
+ //    scanf("%d",&w);
     int gd = DETECT ,gm;
 	initgraph(&gd,&gm,NULL);
-	thickLine(x1,y1,x2,y2,w);
+	thickLine(20,20,400,400,2);
 }
