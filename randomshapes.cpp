@@ -5,22 +5,60 @@
 // सुयश cha code
 using namespace std;
 
+
+class Circle{
+	int x,y,xc,yc,r;
+public:
+	void draw()
+	{
+		xc=300;
+		yc=300;
+		r=141;
+		int d;
+		x=0;
+		y=r;
+		d=3-2*r;
+
+		do
+		{
+			putpixel(x+xc,y+yc,WHITE);
+			putpixel(x+xc,-y+yc,WHITE);
+			putpixel(-x+xc,y+yc,WHITE);
+			putpixel(-x+xc,-y+yc,WHITE);
+
+			putpixel(y+yc,x+xc,WHITE);
+			putpixel(y+yc,-x+xc,WHITE);
+			putpixel(-y+yc,x+xc,WHITE);
+			putpixel(-y+yc,-x+xc,WHITE);
+
+			x++;
+			if(d<0)
+				d=d+4*x+6;
+			else
+			{
+				y--;
+				d=(d+ 4*(x-y)+10);
+			}
+			delay(10);
+
+		}while(x<=y);
+		delay(5000);
+	}
+};
+
 class Triangle
 {
-	int gd,gm;
+	
 public:
-	Triangle()
-	{
-		initgraph(&gd,&gm,NULL);
-	}
+	
 	void draw()
 	{
 		drawLine(200,400,400,400);
 		drawLine(200,200,200,400);
 		drawLine(200,200,400,400);
-		circle(300,300,114);
+		// circle(300,300,141);
 
-		delay(5000);
+		
 	}
 	void drawLine(int x1, int y1,int x2,int y2)
 	{
@@ -82,9 +120,12 @@ public:
 
 int main(int argc, char const *argv[])
 {
+	int gd,gm;
+	initgraph(&gd,&gm,NULL);
 	Triangle t;
 	t.draw();
-		
+	Circle c;
+	c.draw();	
 	
 	closegraph();
 	return 0;

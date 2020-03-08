@@ -62,7 +62,7 @@ public:
 
 int main(int argc, char const *argv[])
 {
-	int count=400;
+	int count=100;
 	int gd = DETECT ,gm;
 	initgraph(&gd,&gm,NULL);
 	Circle c[count];
